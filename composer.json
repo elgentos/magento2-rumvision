@@ -1,0 +1,22 @@
+{
+    "name": "elgentos/magento2-rumvison",
+    "description": "Magento2 extension for the frontend implementation of RUMVision",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Wouter Steenmeijer",
+            "email": "wouter@elgentos.nl"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "src/registration.php"
+        ],
+        "psr-4": {
+            "Elgentos\\Rumvision\\": "src/"
+        }
+    }
+}

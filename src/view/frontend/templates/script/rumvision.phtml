@@ -1,0 +1,31 @@
+<?php
+
+/** @var Escaper $escaper */
+/** @var Rumvision $viewModel */
+
+use Elgentos\Rumvision\ViewModel\Rumvision;
+
+$viewModel = $this->getData('rumvision_view_model');
+
+if (!$viewModel->shouldIncludeScript()) {
+    return;
+}
+?>
+
+<script>
+    window.rumv = window.rumv || function() { (window.rumv.q = window.rumv.q || []).push(arguments) };
+    (function(rum, vi,si,on, d) {
+        if ( !new RegExp([d].join('|')).test( on.hostname ) ) {
+            return;
+        }
+        var s = JSON.parse( sessionStorage.getItem('rumv') || '{"pageviews":0}' ); s.pageviews++;
+        if ( s.urls && s.regex && ( s.page = eval('('+s.regex+')')( s.urls, on.pathname ) ) && !s.page.type ) {
+            return sessionStorage.setItem('rumv', JSON.stringify( s ) );
+        }
+
+        vi.rumv.storage = s;
+        var head = si.querySelector('head'), js = si.createElement('script');
+        js.src = 'https://d5yoctgpv4cpx.cloudfront.net/RUM-'+rum+'/v3-'+on.hostname+'.js';
+        head.appendChild(js);
+    })( '<?= $escaper->escapeJs($viewModel->getTrackingId()) ?>', window, document, location, '<?= $escaper->escapeJs($viewModel->getHostName()) ?>' );
+</script>
