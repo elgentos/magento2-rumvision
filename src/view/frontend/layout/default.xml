@@ -8,6 +8,6 @@
             </arguments>
         </block>
 
-        <move name="before.body.end.rumvision" destination="before.body.end" />
+        <move element="before.body.end.rumvision" destination="before.body.end" />
     </body>
 </page>

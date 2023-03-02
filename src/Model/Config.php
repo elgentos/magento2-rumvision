@@ -13,9 +13,9 @@ use Magento\Store\Model\StoreManagerInterface;
 
 class Config
 {
-    private const CONFIG_RUMVISION_ENALBED = 'elgentos/rumvision';
-    private const CONFIG_RUMVISION_TRACKING_ID = 'elgentos/rumvision/oauth2/state';
-    private const CONFIG_RUMVISION_HOST_NAME = 'elgentos/rumvision/oauth2/state';
+    private const CONFIG_RUMVISION_ENALBED = 'elgentos_rumvision/general/enabled';
+    private const CONFIG_RUMVISION_TRACKING_ID = 'elgentos_rumvision/general/tracking_id';
+    private const CONFIG_RUMVISION_HOST_NAME = 'elgentos_rumvision/general/hostname';
 
     /**
      * @param ScopeConfigInterface $config

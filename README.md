@@ -8,7 +8,7 @@
 
 
 ## Main Functionalities
-Magento2 extension for the frontend implementation of rumvision
+Magento2 extension for the frontend implementation of RUMvision
 
 ## Installation
  - Install the module composer by running `composer(2) require elgentos/module-rumvison`
@@ -17,9 +17,9 @@ Magento2 extension for the frontend implementation of rumvision
  - Flush the cache by running `php bin/magento cache:flush`
 
 ## Configuration
-Next is to set the correct database settings for the module. From rumvision you need the TrackingID and the hostname configured in the tool
+Next is to set the correct database settings for the module. From RUMvision you need the TrackingID and the hostname configured in the tool
 
-- Go to: `Systeem > Configuration > Elgentos > Rumvision`
+- Go to: `Stores > Configuration > Elgentos > RUMvision`
 - Enabled the frontend implementation
 - Set the Tracking ID
 - Set the hostname
