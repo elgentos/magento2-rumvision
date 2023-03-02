@@ -5,4 +5,4 @@
  */
 use Magento\Framework\Component\ComponentRegistrar;
 
-ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Elgentos_Rumvison', __DIR__);
+ComponentRegistrar::register(ComponentRegistrar::MODULE, 'Elgentos_Rumvision', __DIR__);
