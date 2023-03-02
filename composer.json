@@ -1,5 +1,5 @@
 {
-    "name": "elgentos/magento2-rumvison",
+    "name": "elgentos/magento2-rumvision",
     "description": "Magento2 extension for the frontend implementation of RUMVision",
     "type": "magento2-module",
     "license": "GPL-3.0",
