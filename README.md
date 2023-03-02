@@ -23,3 +23,11 @@ Next is to set the correct database settings for the module. From RUMvision you 
 - Enabled the frontend implementation
 - Set the Tracking ID
 - Set the hostname
+
+Set this in the backend of magento:
+
+![image](https://user-images.githubusercontent.com/5089604/222476330-62a2d3df-b91c-4311-946a-0fb2137b778c.png)
+
+Output will be this script in the `before.body.end` container.
+
+![image](https://user-images.githubusercontent.com/5089604/222476703-417395cc-4bd6-4025-b3ef-98ee10019130.png)
