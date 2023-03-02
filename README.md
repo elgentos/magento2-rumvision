@@ -1,6 +1,6 @@
 # Elgentos RumVision Frontend implementation module
 
-    `composer require elgentos/module-rumvision`
+    composer require elgentos/module-rumvision
 
  - [Main Functionalities](#markdown-header-main-functionalities)
  - [Installation](#markdown-header-installation)
