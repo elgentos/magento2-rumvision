@@ -8,8 +8,6 @@
 namespace Elgentos\Rumvision\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Framework\App\Config\Storage\WriterInterface;
-use Magento\Framework\App\State;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 
@@ -18,8 +16,6 @@ class Config
     private const CONFIG_RUMVISION_ENALBED = 'elgentos/rumvision';
     private const CONFIG_RUMVISION_TRACKING_ID = 'elgentos/rumvision/oauth2/state';
     private const CONFIG_RUMVISION_HOST_NAME = 'elgentos/rumvision/oauth2/state';
-
-    private ?Configuration $configuration;
 
     /**
      * @param ScopeConfigInterface $config

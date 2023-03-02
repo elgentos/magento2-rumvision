@@ -4,7 +4,7 @@
 
         <block name="before.body.end.rumvision" template="Elgentos_Rumvision::script/rumvision.phtml">
             <arguments>
-                <argument name="rumvision_view_model" xsi:type="object">\Elgentos\Rumvision\ViewModel\CustomerCertificates</argument>
+                <argument name="rumvision_view_model" xsi:type="object">\Elgentos\Rumvision\ViewModel\Rumvision</argument>
             </arguments>
         </block>
 
