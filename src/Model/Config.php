@@ -30,12 +30,12 @@ class Config implements ConfigurationInterface
 
     public function getTrackingId(int $storeId = null): string
     {
-        return (string)$this->config->getValue(self::CONFIG_RUMVISION_ENALBED, ScopeInterface::SCOPE_STORE, $this->getStoreId($storeId));
+        return (string)$this->config->getValue(self::CONFIG_RUMVISION_TRACKING_ID, ScopeInterface::SCOPE_STORE, $this->getStoreId($storeId));
     }
 
     public function getHostName(int $storeId = null): string
     {
-        return (string)$this->config->getValue(self::CONFIG_RUMVISION_ENALBED, ScopeInterface::SCOPE_STORE, $this->getStoreId($storeId));
+        return (string)$this->config->getValue(self::CONFIG_RUMVISION_HOST_NAME, ScopeInterface::SCOPE_STORE, $this->getStoreId($storeId));
     }
 
     public function getStoreId(int $storeId = null) :int
