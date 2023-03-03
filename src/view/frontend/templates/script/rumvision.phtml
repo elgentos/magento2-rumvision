@@ -1,13 +1,15 @@
 <?php
 
+/** @var Template $block */
 /** @var Escaper $escaper */
-/** @var Rumvision $viewModel */
 
 use Elgentos\Rumvision\ViewModel\Rumvision;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
 
-$viewModel = $this->getData('rumvision_view_model');
-
-if (!$viewModel->shouldIncludeScript()) {
+/** @var Rumvision $viewModel */
+$viewModel = $block->getData('rumvision_view_model');
+if (! $viewModel->shouldIncludeScript()) {
     return;
 }
 ?>
