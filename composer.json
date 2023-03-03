@@ -10,13 +10,31 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "php": "^8.0|^8.1|^8.2",
+        "magento/framework": "*",
+        "magento/module-store": "*"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest"
+    },
     "autoload": {
         "files": [
             "src/registration.php"
         ],
         "psr-4": {
             "Elgentos\\Rumvision\\": "src/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://mirror.mage-os.org/"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "magento/composer-dependency-version-audit-plugin": false
         }
     }
 }
