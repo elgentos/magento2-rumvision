@@ -6,29 +6,34 @@
 
 namespace Elgentos\Rumvision\ViewModel;
 
-use Elgentos\Rumvision\Model\Config;
+use Elgentos\Rumvision\Api\ConfigurationInterface;
 use Magento\Framework\View\Element\Block\ArgumentInterface;
 
 class Rumvision implements ArgumentInterface
 {
     public function __construct(
-        private Config $config
-    )
-    {}
+        private ConfigurationInterface $configuration
+    ) {}
 
-    public function shouldIncludeScript(): ?bool
+    public function shouldIncludeScript(): bool
     {
-        return (bool)$this->config->isEnabled()
-            && (bool)$this->config->getTrackingId();
+        $isEnabled = $this->configuration
+                ->isEnabled();
+        $trackingId = $this->configuration
+                ->getTrackingId();
+
+        return $isEnabled && $trackingId;
     }
 
     public function getTrackingId() :string
     {
-        return $this->config->getTrackingId();
+        return $this->configuration
+                ->getTrackingId();
     }
 
     public function getHostName() :string
     {
-        return $this->config->getHostName();
+        return $this->configuration
+                ->getHostName();
     }
 }
