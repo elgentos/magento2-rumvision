@@ -11,8 +11,7 @@
 Magento2 extension for the frontend implementation of RUMvision. You can find more information about rumvision on this page: https://www.rumvision.com/.
 
 ## Installation
- - Install the module composer by running `composer(2) require elgentos/module-rumvision`
- - enable the module by running `php bin/magento module:enable Elgentos_Rumvision`
+ - Install the module composer by running `composer require elgentos/module-rumvision`
  - apply database updates by running `php bin/magento setup:upgrade`\*
  - Flush the cache by running `php bin/magento cache:flush`
 
