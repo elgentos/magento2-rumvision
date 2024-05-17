@@ -7,6 +7,10 @@
         {
             "name": "Wouter Steenmeijer",
             "email": "wouter@elgentos.nl"
+        },
+        {
+            "name": "Wouter Steenmeijer",
+            "email": "wouter@elgentos.nl"
         }
     ],
     "minimum-stability": "dev",
