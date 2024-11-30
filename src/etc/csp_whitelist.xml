@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+    <policies>
+        <policy name="script-src">
+            <values>
+                <value href="d19jstis2ivb20.cloudfront.net"/>
+                <value href="d5yoctgpv4cpx.cloudfront.net"/>
+                <value href="'unsafe-inline'"/>
+                <value href="'unsafe-eval'"/>
+            </values>
+        </policy>
+        <policy name="connect-src">
+            <values>
+                <value href="p2iqhncxyh.execute-api.eu-central-1.amazonaws.com"/>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>
