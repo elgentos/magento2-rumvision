@@ -21,10 +21,10 @@ if (! $viewModel->shouldIncludeScript()) {
         if ( s.urls && s.regex && ( s.page = eval('('+s.regex+')')( s.urls, vi.location.pathname ) ) && !s.page.type ) {
             return sessionStorage.setItem('rumv', JSON.stringify( s ) );
         }
-        
+
         vi.rumv.storage = s;
         var head = si.querySelector('head'), js = si.createElement('script');
         js.src = 'https://d5yoctgpv4cpx.cloudfront.net/'+rum+'/v4-'+vi.location.hostname+'.js';
         head.appendChild(js);
-    })( 'RUM-<?= $escaper->escapeJs($viewModel->getTrackingId()) ?>', window, document, '<?= $escaper->escapeJs($viewModel->getHostName()) ?>' );
+    })( '<?= $escaper->escapeJs($viewModel->getTrackingId()) ?>', window, document, '<?= $escaper->escapeJs($viewModel->getHostName()) ?>' );
 </script>

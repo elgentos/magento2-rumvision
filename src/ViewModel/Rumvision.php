@@ -27,8 +27,8 @@ class Rumvision implements ArgumentInterface
 
     public function getTrackingId() :string
     {
-        return $this->configuration
-                ->getTrackingId();
+        $trackingId = $this->configuration->getTrackingId();
+        return str_starts_with($trackingId, 'RUM-') ? $trackingId : sprintf('RUM-%s', $trackingId);
     }
 
     public function getHostName() :string
