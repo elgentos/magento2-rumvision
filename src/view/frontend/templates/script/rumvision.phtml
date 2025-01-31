@@ -26,5 +26,5 @@ if (! $viewModel->shouldIncludeScript()) {
         var head = si.querySelector('head'), js = si.createElement('script');
         js.src = 'https://d5yoctgpv4cpx.cloudfront.net/'+rum+'/v4-'+vi.location.hostname+'.js';
         head.appendChild(js);
-    })( '<?= $escaper->escapeJs($viewModel->getTrackingId()) ?>', window, document, '<?= $escaper->escapeJs($viewModel->getHostName()) ?>' );
+    })( 'RUM-<?= $escaper->escapeJs($viewModel->getTrackingId()) ?>', window, document, '<?= $escaper->escapeJs($viewModel->getHostName()) ?>' );
 </script>
