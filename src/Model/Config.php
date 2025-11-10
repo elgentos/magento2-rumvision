@@ -53,7 +53,7 @@ class Config implements ConfigurationInterface
         );
     }
 
-    public function getStoreId(int $storeId = null) :int
+    public function getStoreId(?int $storeId = null) :int
     {
         return (int)$this->storeManager
             ->getStore($storeId)
