@@ -21,7 +21,7 @@ class Config implements ConfigurationInterface
         private State $appState,
     ) {}
 
-    public function isEnabled(int $storeId = null): bool
+    public function isEnabled(?int $storeId = null): bool
     {
         if ($this->appState->getMode() === State::MODE_DEVELOPER) {
             // Don't run in developer mode
@@ -35,7 +35,7 @@ class Config implements ConfigurationInterface
         );
     }
 
-    public function getTrackingId(int $storeId = null): string
+    public function getTrackingId(?int $storeId = null): string
     {
         return (string)$this->config->getValue(
             self::CONFIG_RUMVISION_TRACKING_ID,
@@ -44,7 +44,7 @@ class Config implements ConfigurationInterface
         );
     }
 
-    public function getHostName(int $storeId = null): string
+    public function getHostName(?int $storeId = null): string
     {
         return (string)$this->config->getValue(
             self::CONFIG_RUMVISION_HOST_NAME,
