@@ -1,0 +1,33 @@
+<?php
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var HyvaCsp $hyvaCsp */
+
+use Elgentos\Rumvision\ViewModel\Rumvision;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Hyva\Theme\ViewModel\HyvaCsp;
+
+/** @var Rumvision $viewModel */
+$viewModel = $block->getData('rumvision_view_model');
+if (! $viewModel->shouldIncludeScript()) {
+    return;
+}
+?>
+
+<script>
+  window.rumv = window.rumv || function() { (window.rumv.q = window.rumv.q || []).push(arguments) };
+  (function(rum, vi,si,on) {
+    var s = JSON.parse( sessionStorage.getItem('rumv') || '{"pageviews":0}' ); s.pageviews++;
+    if ( s.urls && s.regex && ( s.page = eval('('+s.regex+')')( s.urls, vi.location.pathname ) ) && !s.page.type ) {
+      return sessionStorage.setItem('rumv', JSON.stringify( s ) );
+    }
+
+    vi.rumv.storage = s;
+    var head = si.querySelector('head'), js = si.createElement('script');
+    js.src = 'https://d5yoctgpv4cpx.cloudfront.net/'+rum+'/v4-'+vi.location.hostname+'.js';
+    head.appendChild(js);
+  })( '<?= $escaper->escapeJs($viewModel->getTrackingId()) ?>', window, document, '<?= $escaper->escapeJs($viewModel->getHostName()) ?>' );
+</script>
+<?php $hyvaCsp->registerInlineScript() ?>
