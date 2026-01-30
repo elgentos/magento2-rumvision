@@ -10,6 +10,25 @@
 ## Main Functionalities
 Magento2 extension for the frontend implementation of RUMvision. You can find more information about rumvision on this page: https://www.rumvision.com/.
 
+This module also adds page-type meta tags to help categorize different page types:
+- `home` - Homepage
+- `cms` - CMS pages
+- `product-detail` - Product detail pages
+- `product-listing` - Category/product listing pages
+- `cart` - Shopping cart page
+- `checkout` - Checkout page
+- `success` - Order success page
+- `search` - Search results page
+- `account` - Customer account pages
+
+By these meta tags the RUMvision tool can automatically categorize the pages and show them in the correct dashboard.
+
+Ofcourse its also possible to add custom types by adding the meta tag yourself in the head of the page like this:
+
+    <head>
+        <meta name="page-type" content="VALUE"/>
+    </head>
+
 ## Installation
  - Install the module composer by running `composer(2) require elgentos/magento2-rumvision`
  - enable the module by running `php bin/magento module:enable Elgentos_Rumvision`
