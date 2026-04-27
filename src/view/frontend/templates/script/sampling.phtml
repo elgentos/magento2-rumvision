@@ -1,0 +1,33 @@
+<?php
+
+/** @var Template $block */
+
+use Elgentos\Rumvision\ViewModel\Rumvision;
+use Magento\Framework\View\Element\Template;
+
+/** @var Rumvision $viewModel */
+$viewModel = $block->getData('rumvision_view_model');
+if (! $viewModel->shouldIncludeScript()) {
+    return;
+}
+
+$samplingRate = (int)$viewModel->getSamplingRate();
+if ($samplingRate >= 100) {
+    return;
+}
+?>
+
+<script>
+    (function() {
+        try {
+            let sampled = sessionStorage.getItem('rumvision_sampled');
+            if (sampled === null) {
+                sampled = (Math.random() * 100 < <?= $samplingRate ?>) ? '1' : '0';
+                sessionStorage.setItem('rumvision_sampled', sampled);
+            }
+            window.__rumvisionSkip = sampled === '0';
+        } catch (e) {
+            window.__rumvisionSkip = false;
+        }
+    })();
+</script>

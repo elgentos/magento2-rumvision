@@ -2,12 +2,19 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
 
-        <block name="before.body.end.rumvision" template="Elgentos_Rumvision::script/rumvision.phtml">
+        <block name="before.body.end.rumvision.sampling" template="Elgentos_Rumvision::script/sampling.phtml" before="before.body.end.rumvision">
             <arguments>
                 <argument name="rumvision_view_model" xsi:type="object">\Elgentos\Rumvision\ViewModel\Rumvision</argument>
             </arguments>
         </block>
 
+        <block name="before.body.end.rumvision" template="Elgentos_Rumvision::script/rumvision.phtml" after="before.body.end.rumvision.sampling">
+            <arguments>
+                <argument name="rumvision_view_model" xsi:type="object">\Elgentos\Rumvision\ViewModel\Rumvision</argument>
+            </arguments>
+        </block>
+
+        <move element="before.body.end.rumvision.sampling" destination="before.body.end" before="before.body.end.rumvision" />
         <move element="before.body.end.rumvision" destination="before.body.end" />
     </body>
 </page>
