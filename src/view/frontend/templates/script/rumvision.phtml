@@ -15,6 +15,7 @@ if (! $viewModel->shouldIncludeScript()) {
 ?>
 
 <script>
+    if (!window.__rumvisionSkip) {
     window.rumv = window.rumv || function() { (window.rumv.q = window.rumv.q || []).push(arguments) };
     (function(rum, vi,si,on) {
         var s = JSON.parse( sessionStorage.getItem('rumv') || '{"pageviews":0}' ); s.pageviews++;
@@ -27,4 +28,5 @@ if (! $viewModel->shouldIncludeScript()) {
         js.src = 'https://d5yoctgpv4cpx.cloudfront.net/'+rum+'/v4-'+vi.location.hostname+'.js';
         head.appendChild(js);
     })( '<?= $escaper->escapeJs($viewModel->getTrackingId()) ?>', window, document, '<?= $escaper->escapeJs($viewModel->getHostName()) ?>' );
+    }
 </script>

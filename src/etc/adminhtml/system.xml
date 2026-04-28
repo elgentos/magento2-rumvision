@@ -34,6 +34,16 @@
                         <field id="enabled">1</field>
                     </depends>
                 </field>
+
+                <field id="sampling_rate" translate="label tooltip comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sampling Rate (%)</label>
+                    <tooltip>Percentage of sessions to track. 100 = track all sessions (default).</tooltip>
+                    <comment>Enter a value between 1 and 100.</comment>
+                    <validate>required-entry validate-digits validate-digits-range digits-range-1-100</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
             </group>
         </section>
     </system>

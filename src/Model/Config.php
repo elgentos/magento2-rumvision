@@ -53,6 +53,17 @@ class Config implements ConfigurationInterface
         );
     }
 
+    public function getSamplingRate(?int $storeId = null): int
+    {
+        $value = (int)$this->config->getValue(
+            self::CONFIG_RUMVISION_SAMPLING_RATE,
+            ScopeInterface::SCOPE_STORE,
+            $this->getStoreId($storeId)
+        );
+
+        return ($value > 0 && $value <= 100) ? $value : 100;
+    }
+
     public function getStoreId(?int $storeId = null) :int
     {
         return (int)$this->storeManager

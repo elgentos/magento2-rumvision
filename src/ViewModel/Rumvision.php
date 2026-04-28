@@ -36,4 +36,9 @@ class Rumvision implements ArgumentInterface
         return $this->configuration
                 ->getHostName();
     }
+
+    public function getSamplingRate() :int
+    {
+        return $this->configuration->getSamplingRate();
+    }
 }
