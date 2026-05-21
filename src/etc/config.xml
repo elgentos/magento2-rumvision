@@ -8,6 +8,22 @@
                 <trackingId />
                 <hostname />
                 <sampling_rate>100</sampling_rate>
+                <excluded_bot_patterns>bot
+crawl
+spider
+slurp
+baidu
+yandex
+bing
+google
+duckduck
+semrush
+ahrefs
+lighthouse
+pagespeed
+gtmetrix
+facebookexternalhit
+meta-externalagent</excluded_bot_patterns>
             </general>
         </elgentos_rumvision>
     </default>

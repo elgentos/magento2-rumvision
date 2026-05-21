@@ -15,11 +15,20 @@ $samplingRate = (int)$viewModel->getSamplingRate();
 if ($samplingRate >= 100) {
     return;
 }
+
+$excludedBotPatterns = $viewModel->getExcludedBotPatterns();
 ?>
 
 <script>
     (function() {
         try {
+            <?php if (!empty($excludedBotPatterns)): ?>
+            if (navigator.webdriver || new RegExp(<?= json_encode(implode('|', $excludedBotPatterns)) ?>, 'i').test(navigator.userAgent)) {
+                window.__rumvisionSkip = true;
+                return;
+            }
+            <?php endif; ?>
+
             let sampled = sessionStorage.getItem('rumvision_sampled');
             if (sampled === null) {
                 sampled = (Math.random() * 100 < <?= $samplingRate ?>) ? '1' : '0';

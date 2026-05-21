@@ -41,4 +41,15 @@ class Rumvision implements ArgumentInterface
     {
         return $this->configuration->getSamplingRate();
     }
+
+    public function getExcludedBotPatterns() :array
+    {
+        $patterns = $this->configuration->getExcludedBotPatterns();
+
+        if (empty($patterns)) {
+            return [];
+        }
+
+        return array_filter(array_map('trim', explode("\n", $patterns)));
+    }
 }

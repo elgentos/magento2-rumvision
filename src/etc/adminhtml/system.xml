@@ -44,6 +44,14 @@
                         <field id="enabled">1</field>
                     </depends>
                 </field>
+                <field id="excluded_bot_patterns" translate="label tooltip comment" type="textarea" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Excluded Bot Patterns</label>
+                    <tooltip>User-Agent patterns to exclude from RUMvision tracking. Bots matching these patterns will be skipped.</tooltip>
+                    <comment>One pattern per line (case-insensitive match against User-Agent). Leave empty to disable bot filtering.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
             </group>
         </section>
     </system>
