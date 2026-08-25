@@ -1,21 +1,27 @@
 <?php
 
+declare(strict_types=1);
+
 /** @var Template $block */
 /** @var Escaper $escaper */
+/** @var SecureHtmlRenderer $secureRenderer */
 
 use Elgentos\Rumvision\ViewModel\Rumvision;
 use Magento\Framework\Escaper;
 use Magento\Framework\View\Element\Template;
+use Magento\Framework\View\Helper\SecureHtmlRenderer;
 
 /** @var Rumvision $viewModel */
 $viewModel = $block->getData('rumvision_view_model');
 if (! $viewModel->shouldIncludeScript()) {
     return;
 }
-?>
 
-<script>
-    if (!window.__rumvisionSkip) {
+$trackingId = $escaper->escapeJs($viewModel->getTrackingId());
+$hostName = $escaper->escapeJs($viewModel->getHostName());
+
+$script = <<<JS
+if (!window.__rumvisionSkip) {
     window.rumv = window.rumv || function() { (window.rumv.q = window.rumv.q || []).push(arguments) };
     (function(rum, vi,si,on) {
         var s = JSON.parse( sessionStorage.getItem('rumv') || '{"pageviews":0}' ); s.pageviews++;
@@ -25,8 +31,10 @@ if (! $viewModel->shouldIncludeScript()) {
 
         vi.rumv.storage = s;
         var head = si.querySelector('head'), js = si.createElement('script');
-        js.src = 'https://d5yoctgpv4cpx.cloudfront.net/'+rum+'/v4-'+vi.location.hostname+'.js';
+        js.src = 'https://d5yoctgpv4cpx.cloudfront.net/'+rum+'/v5-'+vi.location.hostname+'.js';
         head.appendChild(js);
-    })( '<?= $escaper->escapeJs($viewModel->getTrackingId()) ?>', window, document, '<?= $escaper->escapeJs($viewModel->getHostName()) ?>' );
-    }
-</script>
+    })( '$trackingId', window, document, '$hostName' );
+}
+JS;
+?>
+<?= /* @noEscape */ $secureRenderer->renderTag('script', [], $script, false) ?>

@@ -1,9 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 /** @var Template $block */
+/** @var SecureHtmlRenderer $secureRenderer */
 
 use Elgentos\Rumvision\ViewModel\Rumvision;
 use Magento\Framework\View\Element\Template;
+use Magento\Framework\View\Helper\SecureHtmlRenderer;
 
 /** @var Rumvision $viewModel */
 $viewModel = $block->getData('rumvision_view_model');
@@ -17,26 +21,33 @@ if ($samplingRate >= 100) {
 }
 
 $excludedBotPatterns = $viewModel->getExcludedBotPatterns();
-?>
 
-<script>
-    (function() {
-        try {
-            <?php if (!empty($excludedBotPatterns)): ?>
-            if (navigator.webdriver || new RegExp(<?= json_encode(implode('|', $excludedBotPatterns)) ?>, 'i').test(navigator.userAgent)) {
+$botCheck = '';
+if (!empty($excludedBotPatterns)) {
+    $botPattern = json_encode(implode('|', $excludedBotPatterns));
+    $botCheck = <<<JS
+            if (navigator.webdriver || new RegExp($botPattern, 'i').test(navigator.userAgent)) {
                 window.__rumvisionSkip = true;
                 return;
             }
-            <?php endif; ?>
 
-            let sampled = sessionStorage.getItem('rumvision_sampled');
-            if (sampled === null) {
-                sampled = (Math.random() * 100 < <?= $samplingRate ?>) ? '1' : '0';
-                sessionStorage.setItem('rumvision_sampled', sampled);
-            }
-            window.__rumvisionSkip = sampled === '0';
-        } catch (e) {
-            window.__rumvisionSkip = false;
+JS;
+}
+
+$script = <<<JS
+(function() {
+    try {
+$botCheck
+        let sampled = sessionStorage.getItem('rumvision_sampled');
+        if (sampled === null) {
+            sampled = (Math.random() * 100 < $samplingRate) ? '1' : '0';
+            sessionStorage.setItem('rumvision_sampled', sampled);
         }
-    })();
-</script>
+        window.__rumvisionSkip = sampled === '0';
+    } catch (e) {
+        window.__rumvisionSkip = false;
+    }
+})();
+JS;
+?>
+<?= /* @noEscape */ $secureRenderer->renderTag('script', [], $script, false) ?>
