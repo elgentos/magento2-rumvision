@@ -16,11 +16,10 @@ if (! $viewModel->shouldIncludeScript()) {
 }
 
 $samplingRate = (int)$viewModel->getSamplingRate();
-if ($samplingRate >= 100) {
+$excludedBotPatterns = $viewModel->getExcludedBotPatterns();
+if ($samplingRate >= 100 && empty($excludedBotPatterns)) {
     return;
 }
-
-$excludedBotPatterns = $viewModel->getExcludedBotPatterns();
 
 $botCheck = '';
 if (!empty($excludedBotPatterns)) {
@@ -34,16 +33,23 @@ if (!empty($excludedBotPatterns)) {
 JS;
 }
 
-$script = <<<JS
-(function() {
-    try {
-$botCheck
+$samplingCheck = '';
+if ($samplingRate < 100) {
+    $samplingCheck = <<<JS
         let sampled = sessionStorage.getItem('rumvision_sampled');
         if (sampled === null) {
             sampled = (Math.random() * 100 < $samplingRate) ? '1' : '0';
             sessionStorage.setItem('rumvision_sampled', sampled);
         }
         window.__rumvisionSkip = sampled === '0';
+
+JS;
+}
+
+$script = <<<JS
+(function() {
+    try {
+$botCheck$samplingCheck
     } catch (e) {
         window.__rumvisionSkip = false;
     }
